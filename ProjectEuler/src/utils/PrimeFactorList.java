@@ -41,6 +41,34 @@ public class PrimeFactorList extends TreeMap<Long, Long> {
 		factorizeNumber(i);
 	}
 	
+	/**
+	 * @param p1 list 1
+	 * @param p2 list 2
+	 * @return a new list containing the differences in the input lists
+	 * @note p1 should be smaller than p2 for reasonable results
+	 */
+	public static PrimeFactorList differFactorLists(PrimeFactorList p1, PrimeFactorList p2)
+	{
+		// init the result empty
+		PrimeFactorList result = new PrimeFactorList(0L);
+		
+		// get the differences in power in the two lists
+		for(Entry<Long, Long> entry: p2.entrySet())
+		{
+			if (entry == null)
+				continue;
+
+			long i1 = entry.getValue(); 
+			long i2 = p1.getPower(entry.getKey());
+			long r = Math.abs(i1-i2);
+			
+			// if a power cancels each other out dismiss it
+			if (r > 0)
+				result.put(entry.getKey(), r);
+		}
+		return result;
+	}
+	
 	// take a bunch of indiviual lists and make them one
 	public static PrimeFactorList aggregateFactorLists(PrimeFactorList[] others)
 	{

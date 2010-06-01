@@ -48,5 +48,26 @@ public class PrimeFactorListTest extends TestCase {
 		assertEquals(60, kgv);
 		
 	}
+
+	public void testDiff()
+	{
+		PrimeFactorList n1 = new PrimeFactorList(12345);
+		PrimeFactorList n2 = new PrimeFactorList(1234500);
+		PrimeFactorList result = PrimeFactorList.differFactorLists(n1, n2);
+		long r = result.calculateValue();
+		assertEquals(100, r);
+
+		n1 = new PrimeFactorList(24690);
+		n2 = new PrimeFactorList(1234500);
+		result = PrimeFactorList.differFactorLists(n1, n2);
+		r = result.calculateValue();
+		assertEquals(50, r);
+
+		n1 = new PrimeFactorList(105);
+		n2 = new PrimeFactorList(143);
+		result = PrimeFactorList.differFactorLists(n1, n2);
+		r = result.calculateValue();
+		assertEquals(143, r);
+	}
 	
 }
