@@ -47,7 +47,8 @@ public class PrimeCheck {
 				if (test % factor == 0)
 					return false;
 			}
-			start = _primes.lastKey();
+			//this is too much optimization, doesnt work if the primes come in the wrong order (especially problem #35)
+			//start = _primes.lastKey();
 		}
 		// according to the internet the maxiumum upper boundary is the square root of the tested number
 		long upper = Math.round(Math.sqrt(test)) + 1;
