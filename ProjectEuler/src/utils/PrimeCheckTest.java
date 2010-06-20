@@ -14,5 +14,7 @@ public class PrimeCheckTest extends TestCase {
 		assertTrue(p.isPrime(5));
 		assertTrue(p.isPrime(13));
 		assertTrue(p.isPrime(113));
+		assertTrue(p.isPrime(971));
+		assertFalse(p.isPrime(81));
 	}
 }
