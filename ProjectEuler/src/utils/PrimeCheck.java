@@ -8,6 +8,7 @@ import java.util.TreeMap;
 public class PrimeCheck {
 	// for more performance in repeated checks we remember all found primes (in a BST for quick searches)
 	private TreeMap<Long, Long> _primes;
+	private long _optimize;
 
 	/**
 	 * Constructor for the internal storage 
@@ -15,6 +16,20 @@ public class PrimeCheck {
 	public PrimeCheck()
 	{
 		_primes = new TreeMap<Long, Long>();
+		_optimize = 0;
+	}
+
+	public PrimeCheck(long base)
+	{
+		_primes = new TreeMap<Long, Long>();
+		_optimize = base;
+		PrimeGenerator g = new PrimeGenerator();
+		long p = g.getNextPrime();
+		while (p < _optimize)
+		{
+			_primes.put(p, p);
+			p = g.getNextPrime();
+		}
 	}
 
 	/**
@@ -48,7 +63,9 @@ public class PrimeCheck {
 					return false;
 			}
 			//this is too much optimization, doesnt work if the primes come in the wrong order (especially problem #35)
-			//start = _primes.lastKey();
+			// *note* redone optimization for an upper limit of primes
+			if (_optimize > 0 && test < _optimize)
+				start = _primes.lastKey();
 		}
 		// according to the internet the maxiumum upper boundary is the square root of the tested number
 		long upper = Math.round(Math.sqrt(test)) + 1;

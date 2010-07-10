@@ -24,7 +24,8 @@ public class Problem35 {
 	public Problem35()
 	{
 		_gen = new PrimeGenerator();
-		_checker = new PrimeCheck();
+		// *note* take advantage of the new version of the primechecker (gained ~80% over previous version)
+		_checker = new PrimeCheck(MAX);
 	}
 	
 	/**
