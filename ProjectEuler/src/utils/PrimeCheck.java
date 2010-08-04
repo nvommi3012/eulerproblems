@@ -39,7 +39,7 @@ public class PrimeCheck {
 	public boolean isPrime(long test) {
 		// test for primeness. a prime is a number divisible only by 1 and itself
 		// so we start with 2 until we reach the square root of the number
-		// (for example 100 cant be divided by anything greater than 50, so we can stop there)
+		// (for example 100 can't be divided by anything greater than 50, so we can stop there)
 		
 		long start = 2;
 		// there are no primes smaller than that
@@ -52,6 +52,9 @@ public class PrimeCheck {
 		{
 			return true;
 		}
+
+		// according to the internet the maximum upper boundary is the square root of the tested number
+		long upper = Math.round(Math.sqrt(test)) + 1;
 		
 		// then check against factors of already known primes
 		// so we can perhaps reduce the range we need to check
@@ -61,14 +64,14 @@ public class PrimeCheck {
 			{
 				if (test % factor == 0)
 					return false;
+				if (factor > upper)
+					break;
 			}
-			//this is too much optimization, doesnt work if the primes come in the wrong order (especially problem #35)
+			//this is too much optimization, doesn't work if the primes come in the wrong order (especially problem #35)
 			// *note* redone optimization for an upper limit of primes
 			if (_optimize > 0 && test < _optimize)
 				start = _primes.lastKey();
 		}
-		// according to the internet the maxiumum upper boundary is the square root of the tested number
-		long upper = Math.round(Math.sqrt(test)) + 1;
 		for (long i = start; i < upper; ++i)
 		{
 			// if there is a number i which divides test with no rest then we can safely assume it is not a prime
