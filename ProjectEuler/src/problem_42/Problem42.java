@@ -5,6 +5,10 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * @author Wolfgang
+ * @note using words.txt how many are triangle words?
+ */
 public class Problem42 {
 
 	ArrayList<String> _words;
