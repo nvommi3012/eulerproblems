@@ -21,7 +21,7 @@ public class Problem18 {
 	public Problem18(String filename) throws Exception
 	{
 		// open the data file
-		File f = new File("src\\problem_18\\" + filename);
+		File f = new File("src"+ File.separator +"problem_18", filename);
 		// get a linecount so we can allocate the array correctly
 		_lines = getLineCount(f);
 		// allocate the array

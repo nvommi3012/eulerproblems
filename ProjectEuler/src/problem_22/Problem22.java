@@ -103,7 +103,7 @@ public class Problem22 {
 	public Problem22(String filename) {
 		// allocate the internal map
 		_names = new TreeMap<String, Score>();
-		File f = new File("src\\problem_22\\" + filename);
+		File f = new File("src" + File.separator + "problem_22", filename);
 		try {
 			// get a temporary map with the names
 			TreeMap<String, Score> map = fillMap(f);
