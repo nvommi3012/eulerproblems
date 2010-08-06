@@ -1,55 +1,12 @@
 package problem_43;
 
+import utils.Permutation;
+
 /**
  * @author Wolfgang
  * @note Find the sum of all 0 to 9 pandigital numbers with this (special) property.
  */
 public class Problem43 {
-	
-	/**
-	 * @param digits byte array containing all 10 digits
-	 * @param permutation number of the permutation to be calculated
-	 * @return the resulting permutated array of digits
-	 * @note this function is adapted from a javascript function found on the internet
-	 */
-	public byte[] permutenth(byte[] digits, int permutation)
-	{
-		byte j = 0, k = 0;
-		int factorials[] = new int[digits.length];
-		byte idn[] = new byte[digits.length];
-		
-		// calculate factorials up to n 
-		factorials[digits.length - 1] = 1;
-		for(j = (byte)(digits.length - 2); j >= 0; --j)
-			factorials[j] = factorials[j+1] * (digits.length - 1 - j);
-
-		// ???
-		for(j = 0; j < (byte)(digits.length - 1); ++j)
-			idn[j] = j;
-
-		// switch the digits
-		for (j = 0; j < digits.length; ++j)
-		{
-			// the factorials define what numbers can stay the same and what has to move
-			// assume we have a set {1,2,3,4,5} and want the 5 permutation:
-			// we can now safely say we don't need to move the 1 and 2 because with the subset
-			// {3,4,5} we already have 3! permutations to do (3! > 5)
-			byte idx = (byte) (permutation / factorials[j]);
-			byte tmp = idn[j];
-			idn[j] = idn[j + idx];
-			idn[j + idx] = tmp;
-			tmp = digits[j + idx];
-			
-			for (k = idx; k > 0; --k)
-				digits[j + k] = digits[j + k - 1];
-			
-			digits[j] = tmp;
-
-			// remove the already done permutations
-			permutation -= (idx*factorials[j]);
-		}
-		return digits;
-	}
 	
 	/**
 	 * @param digits array of digits
@@ -96,7 +53,7 @@ public class Problem43 {
 			// assume requirements are met
 			found = true;
 			// get the nth permutation
-			byte[] digits = permutenth(new byte[] {1,2,3,4,5,6,7,8,9,0}, i);
+			byte[] digits = Permutation.permutenth(new byte[] {1,2,3,4,5,6,7,8,9,0}, i);
 			// check the 7 subnumbers
 			for (int j = 0; j < 7; ++j)
 			{

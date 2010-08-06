@@ -1,11 +1,12 @@
 package utils;
 
+import static org.junit.Assert.assertEquals;
 import java.util.ArrayList;
+import org.junit.Test;
 
-import junit.framework.TestCase;
+public class PermutationTest{
 
-public class PermutationTest extends TestCase {
-
+	@Test
 	public void testPermutation()
 	{
 		Permutation p = new Permutation();
@@ -20,5 +21,12 @@ public class PermutationTest extends TestCase {
 		assertEquals(result.get(1)[0], 1);
 		assertEquals(result.get(1)[1], 2);
 	}
-	
+
+	@Test
+	public void testPermute()
+	{
+		assertEquals(0, Permutation.permutenth(new byte[] {1,2,3,4,5,6,7,8,9,0}, 3600000)[0]);
+		assertEquals(1, Permutation.permutenth(new byte[] {1,2,3,4,5,6,7,8,9,0}, 1)[0]);
+	}
+
 }

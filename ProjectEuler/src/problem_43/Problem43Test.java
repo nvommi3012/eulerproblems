@@ -22,14 +22,6 @@ public class Problem43Test {
 	}
 
 	@Test
-	public void testPermutation()
-	{
-		Problem43 p = new Problem43();
-		assertEquals(0, p.permutenth(new byte[] {1,2,3,4,5,6,7,8,9,0}, 3600000)[0]);
-		assertEquals(1, p.permutenth(new byte[] {1,2,3,4,5,6,7,8,9,0}, 1)[0]);
-	}
-	
-	@Test
 	public void testSolution()
 	{
 		Problem43 p = new Problem43();
