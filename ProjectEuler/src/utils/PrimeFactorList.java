@@ -16,7 +16,7 @@ public class PrimeFactorList extends TreeMap<Long, Long> {
 			return;
 
 		// get the prime checker
-		PrimeCheck p = new PrimeCheck();
+		Primes p = new Primes();
 		// we divide the original number by its primes until it is no longer divisible
 		while (i > 1)
 		{

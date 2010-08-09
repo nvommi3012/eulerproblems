@@ -2,10 +2,8 @@ package problem_35;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-
 import utils.Digits;
-import utils.PrimeCheck;
-import utils.PrimeGenerator;
+import utils.Primes;
 
 /**
  * @author Wolfgang
@@ -14,8 +12,7 @@ import utils.PrimeGenerator;
 public class Problem35 {
 
 	// prime number generator and checker
-	private PrimeGenerator _gen;
-	private PrimeCheck _checker;
+	private Primes _gen;
 	private final int MAX = 1000000;
 	
 	/**
@@ -23,9 +20,7 @@ public class Problem35 {
 	 */
 	public Problem35()
 	{
-		_gen = new PrimeGenerator();
-		// *note* take advantage of the new version of the primechecker (gained ~80% over previous version)
-		_checker = new PrimeCheck(MAX);
+		_gen = new Primes(MAX);
 	}
 	
 	/**
@@ -68,7 +63,7 @@ public class Problem35 {
 			array = iterator.next();
 			number = Digits.Array(array);
 			// if a rotation is not prime it is not circular
-			if (false == _checker.isPrime(number))
+			if (false == _gen.isPrime(number))
 				return false;
 		}
 		return true;
@@ -82,12 +77,15 @@ public class Problem35 {
 		int result = 0;
 		
 		// get prime first, then on end of loop to leave the loop before MAX is reached
-		prime = _gen.getNextPrime();
-		do {
-			if (isCircular(prime))
-				++result;
-			prime = _gen.getNextPrime();
-		} while (prime < MAX);
+		try
+		{
+			prime = _gen.generatePrime(prime);
+			do {
+				if (isCircular(prime))
+					++result;
+				prime = _gen.generatePrime(prime);
+			} while (prime < MAX);
+		} catch (Exception e) {}
 		return result;
 	}
 

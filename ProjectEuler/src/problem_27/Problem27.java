@@ -1,6 +1,6 @@
 package problem_27;
 
-import utils.PrimeCheck;
+import utils.Primes;
 
 /**
  * @author Wolfgang
@@ -13,14 +13,14 @@ public class Problem27 {
 	/**
 	 * @note Primechecker object stores all primes for easy calculations 
 	 */
-	private PrimeCheck _pc;
+	private Primes _pc;
 
 	/**
 	 * Constructor 
 	 */
 	public Problem27()
 	{
-		_pc = new PrimeCheck();
+		_pc = new Primes();
 	}
 	
 	/**

@@ -1,6 +1,6 @@
 package problem_3;
 
-import utils.PrimeCheck;
+import utils.Primes;
 
 // What is the largest prime factor of the number 600851475143 ?
 public class Problem3 {
@@ -8,7 +8,7 @@ public class Problem3 {
 	// use prime factorization to check for largest prime
 	public long getLargestPrimeFactor(long number) {
 		long result = 0;
-		PrimeCheck p = new PrimeCheck();
+		Primes p = new Primes();
 		
 		// check the remaining number for larger primes than we already found
 		for (long i = 2; i <= number; ++i)

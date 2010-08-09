@@ -1,7 +1,6 @@
 package problem_37;
 
-import utils.PrimeCheck;
-import utils.PrimeGenerator;
+import utils.Primes;
 
 /**
  * @author Wolfgang
@@ -9,16 +8,14 @@ import utils.PrimeGenerator;
  */
 public class Problem37 {
 
-	private PrimeGenerator _gen;
-	private PrimeCheck _check;
+	private Primes _gen;
 	
 	/**
 	 * Constructor, init the PrimeGenerator and Checker (with better optimization)
 	 */
 	public Problem37()
 	{
-		_gen = new PrimeGenerator();
-		_check = new PrimeCheck(1000000);
+		_gen = new Primes(1000000);
 	}
 	
 	/**
@@ -26,14 +23,16 @@ public class Problem37 {
 	 */
 	public int getSolution() {
 		int result = 0;
-		int prime = (int)_gen.getNextPrime();
+		try
+		{
+		int prime = (int)_gen.generatePrime(0);
 		int count = 0;
 
 		// get primes until 11 match the criteria
 		while (count < 11)
 		{
 			// get the next prime
-			prime = (int)_gen.getNextPrime();
+			prime = (int)_gen.generatePrime(prime);
 			// check criteria
 			if (hasPrimeness(prime))
 			{
@@ -42,6 +41,8 @@ public class Problem37 {
 				++count;
 			}
 		}
+		}
+		catch (Exception e) {}
 		return result;
 	}
 
@@ -55,7 +56,7 @@ public class Problem37 {
 		while (n > 10)
 		{
 			n /= 10;
-			if (false == _check.isPrime(n))
+			if (false == _gen.isPrime(n))
 				return false;
 		}
 		return true;
@@ -78,7 +79,7 @@ public class Problem37 {
 			double pow = Math.pow(10, log10);
 			n %= pow;
 			// check if remainder is prime
-			if (false == _check.isPrime(n))
+			if (false == _gen.isPrime(n))
 				return false;
 			// remove one digit
 			--log10;
@@ -92,7 +93,7 @@ public class Problem37 {
 	 */
 	public boolean hasPrimeness(int n) {
 		// sanity check, should only be primes anyway
-		if (false == _check.isPrime(n))
+		if (false == _gen.isPrime(n))
 			return false;
 		
 		// Primes < 10 are not to be counted

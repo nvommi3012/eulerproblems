@@ -1,17 +1,23 @@
 package problem_7;
 
-import utils.PrimeGenerator;
+import utils.Primes;
 
-// What is the 10001^(st) prime number?
+/**
+ * @author Wolfgang
+ * @note What is the 10001st prime number? 
+ */
 public class Problem7 {
 
+	/**
+	 * @param max what prime to get (ordinal)
+	 * @return the value of the nth prime
+	 */
 	public long getPrime(int max) {
 		long result = 0;
-		PrimeGenerator p = new PrimeGenerator();
+		Primes p = new Primes();
+		// just count all the primes
 		for (int count = 0; count < max; ++count)
-			result = p.getNextPrime();
+			try { result = p.generatePrime(result); } catch (Exception e) {}
 		return result;
-//		return p.getPrime(max);
 	}
-	
 }
