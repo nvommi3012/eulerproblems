@@ -48,8 +48,8 @@ public class Primes {
 	{
 		try
 		{
-			_optimize = true;
 			_upperLimit = 2L;
+			_optimize = true;
 			long prime = 2L;
 			while (prime <= limit)
 				prime = generatePrime(prime);
@@ -135,7 +135,7 @@ public class Primes {
 	private void addPrime(long n, long start)
 	{
 		// if n is the next prime from our optimized list it can be added there
-		if (_optimize == true && start == _primes.last() + 1)
+		if (_optimize == true && start == _primes.last())
 		{
 			_upperLimit = n;
 			_primes.add(n);
@@ -157,6 +157,10 @@ public class Primes {
 		// any number smaller 2 is automatically 2
 		if (start < 2)
 			return 2;
+		
+		// if we have optimization available look for the next highest prime in the list
+		if (_optimize && start + 1 < _primes.last())
+			return _primes.ceiling(start + 1);
 		
 		// just check all numbers for primeness
 		for (long n = start + 1; n < Long.MAX_VALUE; ++n)
@@ -232,7 +236,7 @@ public class Primes {
 			{
 				if (generatePrime(_primes.last() + 1) == n)
 				{
-					addPrime(n, _primes.last() + 1);
+					addPrime(n, _primes.last());
 				}
 			}
 			else

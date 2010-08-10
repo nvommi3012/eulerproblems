@@ -3,42 +3,90 @@ package utils;
 import java.util.TreeMap;
 import java.util.Map.Entry;
 
-
-// class to do prime factorization
+/**
+ * @author Wolfgang
+ * @note class to do prime factorization
+ */
 public class PrimeFactorList extends TreeMap<Long, Long> {
 	private static final long serialVersionUID = 1L;
+	private Primes _primes;
 
-	// factorize the number
+	/**
+	 * @param i number to be factorized
+	 */
 	private void factorizeNumber(long i)
 	{
 		// check for stupid numbers
-		if (i == 0)
+		if (i <= 0)
 			return;
 
-		// get the prime checker
-		Primes p = new Primes();
-		// we divide the original number by its primes until it is no longer divisible
-		while (i > 1)
+		if (_primes.isPrime(i))
 		{
-			for (long x = 2; x <= i; ++x)
+			this.put(i, getPower(i) + 1);
+			return;
+		}
+		
+		try
+		{
+			// we divide the original number by its primes until it is no longer divisible
+			while (i > 1)
 			{
-				if (((i % x) == 0) && p.isPrime(x))
+				// check for 2 seperatly so the next loop can be optimized a bit 
+				if (i % 2 == 0)
 				{
-					// since we not only want to know which primes are a factor
-					// but also in which power, we will add one power for each factor we find
-					this.put(x, getPower(x) + 1);
-					i = i / x;
-					break;
+					this.put(2L, getPower(2) + 1);
+					i = i / 2;
+					continue;
+				}
+				// start with 3 and skip all even numbers (since even numbers are just powers of 2 and other primes)
+				for (long x = 3; x <= i; x+=2)
+				{
+					if (((i % x) == 0) && _primes.isPrime(x))
+					{
+						// since we not only want to know which primes are a factor
+						// but also in which power, we will add one power for each factor we find
+						this.put(x, getPower(x) + 1);
+						i = i / x;
+						break;
+					}
 				}
 			}
 		}
+		catch(Exception e)
+		{
+			this.clear();
+		}
 	}
 	
-	// constructor is used to factorize a number immediatly
+	/**
+	 * @param i number to be factorized
+	 * @note default constructor is used to factorize a number immediatly
+	 */
 	public PrimeFactorList(long i)
 	{
 		super();
+		_primes = new Primes();
 		factorizeNumber(i);
+	}
+	
+	/**
+	 * @param n number to factorize
+	 * @param opt seed for the prime class
+	 */
+	public PrimeFactorList(long n, long opt)
+	{
+		super();
+		_primes = new Primes(opt);
+		factorizeNumber(n);
+	}
+	
+	/**
+	 * @param n number to factorize
+	 */
+	public void refactorize(long n)
+	{
+		this.clear();
+		factorizeNumber(n);
 	}
 	
 	/**

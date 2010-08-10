@@ -1,10 +1,11 @@
 package utils;
 
-import junit.framework.TestCase;
+import static org.junit.Assert.*;
+import org.junit.Test;
 
+public class PrimeFactorListTest {
 
-public class PrimeFactorListTest extends TestCase {
-
+	@Test
 	public void testFactorization()
 	{
 		// 20 = 2^2, 5^1
@@ -21,6 +22,7 @@ public class PrimeFactorListTest extends TestCase {
 		assertEquals(1, n.getPower(3));
 	}
 	
+	@Test
 	public void testListResults()
 	{
 		// 20 = 2^2, 5^1
@@ -36,6 +38,7 @@ public class PrimeFactorListTest extends TestCase {
 		assertEquals(0, result.getPower(4));
 	}
 	
+	@Test
 	public void testListCalc()
 	{
 		// 20 = 2^2, 5^1
@@ -49,6 +52,7 @@ public class PrimeFactorListTest extends TestCase {
 		
 	}
 
+	@Test
 	public void testDiff()
 	{
 		PrimeFactorList n1 = new PrimeFactorList(12345);
@@ -68,6 +72,30 @@ public class PrimeFactorListTest extends TestCase {
 		result = PrimeFactorList.differFactorLists(n1, n2);
 		r = result.calculateValue();
 		assertEquals(143, r);
+	}
+	
+	@Test
+	public void testRefactor()
+	{
+		PrimeFactorList l = new PrimeFactorList(20);
+		// 30 = 2^1, 3^1 ,5^1
+		l.refactorize(30);
+		assertEquals(3, l.size());
+		assertEquals(1, l.getPower(2));
+		assertEquals(1, l.getPower(5));
+		assertEquals(1, l.getPower(3));
+		
+	}
+
+	@Test
+	public void testOpt()
+	{
+		PrimeFactorList l = new PrimeFactorList(12345, 10000);
+		// 12345 = 3^1 5^1 823^1
+		assertEquals(3, l.size());
+		assertEquals(1, l.getPower(3));
+		assertEquals(1, l.getPower(5));
+		assertEquals(1, l.getPower(823));
 	}
 	
 }
