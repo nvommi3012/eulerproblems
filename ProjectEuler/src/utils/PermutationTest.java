@@ -1,7 +1,8 @@
 package utils;
 
 import static org.junit.Assert.assertEquals;
-import java.util.ArrayList;
+import static org.junit.Assert.fail;
+import utils.ArrayList;
 import org.junit.Test;
 
 public class PermutationTest{
@@ -27,6 +28,19 @@ public class PermutationTest{
 	{
 		assertEquals(0, Permutation.permutenth(new byte[] {1,2,3,4,5,6,7,8,9,0}, 3600000)[0]);
 		assertEquals(1, Permutation.permutenth(new byte[] {1,2,3,4,5,6,7,8,9,0}, 1)[0]);
+	}
+
+	@Test
+	public void testDistinct()
+	{
+		Permutation p = new Permutation();
+		ArrayList<int[]> result = p.permutate(120000);
+		try {
+			result.distinct();
+			assertEquals(30, result.size());
+		} catch (Exception e) {
+			fail();
+		}
 	}
 
 }

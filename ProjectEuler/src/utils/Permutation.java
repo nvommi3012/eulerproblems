@@ -1,6 +1,6 @@
 package utils;
 
-import java.util.ArrayList;
+import utils.ArrayList;
 
 /**
  * @author Wolfgang
