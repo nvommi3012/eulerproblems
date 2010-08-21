@@ -11,6 +11,7 @@ import utils.ArrayList;
 /**
  * @author wolfgang
  * @note enums were too inflexible, use int const now
+ * TODO: remove constants and replace with subclassing, ...
  */
 final class Consts { 
     private Consts() { throw new AssertionError("Consts is uninstantiable"); }
@@ -102,16 +103,17 @@ public class Problem54 {
 			int color = _cards[0].color;
 			int high = _cards[4].value;
 
+			// check for same color on all cards
 			for (Card c: _cards)
 				if (c.color != color)
 					return false;
 			
 			primaryValue = high;
 			
+			// check for order of all cards
 			for (int i = 3; i >= 0; --i)
 			{
 				Card c = _cards[i];
-
 				if (high != c.value + 1)
 					return false;
 				high = c.value;
@@ -124,6 +126,7 @@ public class Problem54 {
 		 */
 		private int[] getValues()
 		{
+			// there are 14 different cards, so an array of [14] is needed
 			int[] values = new int[14];
 			for (Card c: _cards)
 					++values[c.value];
@@ -135,6 +138,7 @@ public class Problem54 {
 		 */
 		private int[] getColors()
 		{
+			// only 4 colors, so array size == 4 suffices
 			int[] colors = new int[4];
 			for (Card c: _cards)
 				++colors[c.color];
@@ -146,6 +150,7 @@ public class Problem54 {
 		 */
 		private boolean isFours()
 		{
+			// check all aggregated values if any one has 4 cards
 			for (int i: getValues())
 				if (i == 4)
 				{
@@ -163,18 +168,20 @@ public class Problem54 {
 			boolean three = false;
 			boolean two = false;
 			int[] values = getValues(); 
+			// check all the values
 			for (int idx = 0; idx < values.length; ++idx)
 			{
-				int n = values[idx];
-				
-				if (n == 3)
+				// any value has 3 cards?
+				if (values[idx] == 3)
 				{
 					primaryValue = idx;
 					three = true;
 				}
-				if (n == 2)
+				// any value has 2 cards
+				if (values[idx] == 2)
 					two = true;
 			}
+			// it's a flush if both are true
 			return two && three;
 		}
 
@@ -183,6 +190,7 @@ public class Problem54 {
 		 */
 		private boolean isFlush()
 		{
+			// check for colors
 			for (int n: getColors())
 				if (n == 5)
 					return true;
@@ -194,6 +202,7 @@ public class Problem54 {
 		 */
 		private boolean isStraight()
 		{
+			// check for order of cards
 			int high = _cards[0].value;
 			for (int i = 1; i < 5; ++i)
 			{
@@ -211,6 +220,7 @@ public class Problem54 {
 		 */
 		private boolean isThrees()
 		{
+			// see if any value has 3 cards
 			for (int n: getValues())
 				if (n == 3)
 					return true;
@@ -224,6 +234,7 @@ public class Problem54 {
 		{
 			int paircount = 0;
 			int[] values = getValues(); 
+			// see how many values have two cards
 			for (int idx = 0; idx < values.length; ++idx)
 			{
 				if (values[idx] == 2)
@@ -233,6 +244,7 @@ public class Problem54 {
 						primaryValue = idx;
 				}
 			}
+			// only if there are 2 pairs return true
 			if (paircount == 2)
 				return true;
 			return false;
@@ -244,7 +256,8 @@ public class Problem54 {
 		private boolean isPair()
 		{
 			int paircount = 0;
-			int[] values = getValues(); 
+			int[] values = getValues();
+			// same as isTwoPairs, but if one
 			for (int idx = 0; idx < values.length; ++idx)
 			{
 				if (values[idx] == 2)
@@ -264,6 +277,7 @@ public class Problem54 {
 		 */
 		public int getPlay()
 		{
+			// check from highest Play to lowest (least complicated)
 			if (isRoyalFlush())
 				return Consts.RoyalFlush;
 			else if (isStraightFlush())
@@ -283,6 +297,7 @@ public class Problem54 {
 			else if (isPair())
 				return Consts.OnePair;
 			
+			// if no other Play was found it's just the highest card
 			primaryValue = _cards[4].value;
 			return Consts.HighCard;
 		}
@@ -302,14 +317,15 @@ public class Problem54 {
 		public int compareTo(Object obj)
 		{
 			Hand other = (Hand)obj;
-
+			// get the score of both hands
 			int p1 = getPlay();
 			int p2 = other.getPlay();
-			
+			// if score differs it's clear who the winner is
 			if (p1 > p2)
 				return 1;
 			else if (p1 == p2)
 			{
+				// if the score is the same, check who has the highest card
 				if (primaryValue > other.primaryValue)
 					return 1;
 			}
@@ -317,11 +333,20 @@ public class Problem54 {
 		}
 	}
 	
+	/**
+	 * @author Wolfgang
+	 * @note class representing a Card; implements Comparable so Arrays.sort is working correctly
+	 */
 	public class Card implements Comparable<Object>
 	{
+		// color (see Consts class)
 		int color;
+		// value (see Consts class)
 		int value;
 		
+		/**
+		 * @param c color to apply to the card
+		 */
 		private void setColor(char c)
 		{
 			switch(c)
@@ -334,6 +359,9 @@ public class Problem54 {
 			}
 		}
 		
+		/**
+		 * @param v value to apply to the card
+		 */
 		private void setValue(char v)
 		{
 			switch(v)
@@ -355,17 +383,29 @@ public class Problem54 {
 			}
 		}
 		
+		/**
+		 * @param in the split string of the input file, containing only the color and value (i.e. 'AH')
+		 */
 		public Card(String in)
 		{
-			setColor(in.charAt(1));
+			// value is first
 			setValue(in.charAt(0));
+			// color is 2nd char
+			setColor(in.charAt(1));
 		}
 
+		/* (non-Javadoc)
+		 * @see java.lang.Object#toString()
+		 */
 		public String toString()
 		{
 			return "" + Consts.ValueStrings[value] + " of " + Consts.ColorStrings[color] + "s";
 		}
 		
+		/**
+		 * @param other card to compare to
+		 * @return true if color and value is equal
+		 */
 		public boolean equals(Card other)
 		{
 			if (other.value == value && other.color == color)
@@ -373,12 +413,19 @@ public class Problem54 {
 			return false;
 		}
 		
+		/**
+		 * @param other card to compare to
+		 * @return true if color is equal
+		 */
 		public boolean equalsColor(Card other) {
 			if (other.color == color)
 				return true;
 			return false;
 		}
 
+		/* (non-Javadoc)
+		 * @see java.lang.Comparable#compareTo(java.lang.Object)
+		 */
 		public int compareTo(Object obj) {
 			Card other = (Card)obj;
 			if (value > other.value)
@@ -389,41 +436,63 @@ public class Problem54 {
 		}
 	}
 	
-	ArrayList<Hand> hands;
+	// storage for the players hands in the file
+	ArrayList<Hand> Player1;
+	ArrayList<Hand> Player2;
 	
+	/**
+	 * @param filename filename of the file containing the hands (without path) 
+	 * @throws IOException if file was unreadable
+	 */
 	public Problem54(String filename) throws IOException
 	{
-		hands = new ArrayList<Hand>();
+		// init the storage
+		Player2 = new ArrayList<Hand>();
+		Player1 = new ArrayList<Hand>();
+		// file object, build path
 		File f = new File("src" + File.separator + "problem_54" + File.separator + filename);
+		// filereader and bufferedreader for easy line reading
 		FileReader r = new FileReader(f);
 		BufferedReader fr = null;
 		try {
 			fr = new BufferedReader(r);
+			// as long as there is data left in the file
 			while (fr.ready())
 			{
+				// get a line and build the 2 hands
 				String line = fr.readLine();
 				Hand h1 = new Hand(line, true);
 				Hand h2 = new Hand(line, false);
-				hands.add(h1);
-				hands.add(h2);
+				// add both hands to storage
+				Player1.add(h1);
+				Player2.add(h2);
 			}
-		} catch (FileNotFoundException e) {
-		}
+		} catch (FileNotFoundException e) {}
 		finally
 		{
 			try {fr.close();} catch (IOException e) {}
 		}
 	}
 	
+	/**
+	 * @return the number of hands player1 has won
+	 */
 	public int getSolution()
 	{
+		// counter
 		int result = 0;
 		
-		for (int i = 0; i < hands.size(); i += 2)
+		if (Player1.size() != Player2.size())
+			return 0;
+		
+		// iterate through all hands
+		for (int i = 0; i < Player1.size(); ++i)
 		{
-			Hand h1 = hands.get(i);
-			Hand h2 = hands.get(i+1);
-			
+			// get player1's hand
+			Hand h1 = Player1.get(i);
+			// get player2's hand
+			Hand h2 = Player2.get(i);
+			// use the Hand.compareTo function to evaluate the hands
 			if (h1.compareTo(h2) > 0)
 				++result;
 		}
