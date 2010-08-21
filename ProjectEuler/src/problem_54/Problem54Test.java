@@ -13,6 +13,7 @@ public class Problem54Test {
 	public void testFile()
 	{
 		try {
+			@SuppressWarnings("unused")
 			Problem54 p = new Problem54("pokertst.txt");
 		} catch (IOException e) {
 			fail();
@@ -23,6 +24,7 @@ public class Problem54Test {
 	public void testLiveFile()
 	{
 		try {
+			@SuppressWarnings("unused")
 			Problem54 p = new Problem54("poker.txt");
 		} catch (IOException e) {
 			fail();
