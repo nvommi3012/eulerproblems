@@ -47,7 +47,7 @@ public class Problem49 {
 				for (int j = 0; j < plist.size(); ++j)
 				{
 					// convert int[] back to number
-					int perm = Digits.Array(plist.get(j));
+					int perm = (int)Digits.Array(plist.get(j));
 					// check if permuation is also prime
 					if (primes.isPrime(perm))
 					{

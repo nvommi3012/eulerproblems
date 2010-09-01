@@ -61,7 +61,7 @@ public class Problem35 {
 		while (iterator.hasNext())
 		{
 			array = iterator.next();
-			number = Digits.Array(array);
+			number = (int) Digits.Array(array);
 			// if a rotation is not prime it is not circular
 			if (false == _gen.isPrime(number))
 				return false;
