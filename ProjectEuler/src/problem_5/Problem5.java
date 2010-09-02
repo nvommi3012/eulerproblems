@@ -17,7 +17,7 @@ public class Problem5 {
 
 		// now combine the results from the individual results in a single result
 		PrimeFactorList result = new PrimeFactorList(0);
-		result = PrimeFactorList.aggregateFactorLists(numbers);
+		result = PrimeFactorList.lowestCommonMultiple(numbers);
 
 		// the least common multiple can be calculated from that result
 		long kgv = result.calculateValue();

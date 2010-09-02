@@ -27,10 +27,10 @@ public class PrimeFactorListTest {
 	{
 		// 20 = 2^2, 5^1
 		PrimeFactorList n1 = new PrimeFactorList(20);
-		// 20 = 2, 3, 5
+		// 30 = 2, 3, 5
 		PrimeFactorList n2 = new PrimeFactorList(30);
 
-		PrimeFactorList result = PrimeFactorList.aggregateFactorLists(new PrimeFactorList[] {n1, n2});
+		PrimeFactorList result = PrimeFactorList.lowestCommonMultiple(new PrimeFactorList[] {n1, n2});
 		assertEquals(3, result.size());
 		assertEquals(2, result.getPower(2));
 		assertEquals(1, result.getPower(3));
@@ -43,13 +43,31 @@ public class PrimeFactorListTest {
 	{
 		// 20 = 2^2, 5^1
 		PrimeFactorList n1 = new PrimeFactorList(20);
-		// 20 = 2, 3, 5
+		// 30 = 2, 3, 5
 		PrimeFactorList n2 = new PrimeFactorList(30);
 
-		PrimeFactorList result = PrimeFactorList.aggregateFactorLists(new PrimeFactorList[] {n1, n2});
+		PrimeFactorList result = PrimeFactorList.lowestCommonMultiple(new PrimeFactorList[] {n1, n2});
 		long kgv = result.calculateValue();
 		assertEquals(60, kgv);
 		
+	}
+
+	@Test
+	public void testGGT()
+	{
+		// 20 = 2^2, 5^1
+		PrimeFactorList n1 = new PrimeFactorList(20);
+		// 30 = 2, 3, 5
+		PrimeFactorList n2 = new PrimeFactorList(30);
+		assertEquals(10, PrimeFactorList.greatestCommonDivisor(new PrimeFactorList[] {n1, n2}).calculateValue());
+
+		n1 = new PrimeFactorList(100);
+		n2 = new PrimeFactorList(5);
+		assertEquals(5, PrimeFactorList.greatestCommonDivisor(new PrimeFactorList[] {n1, n2}).calculateValue());
+
+		n1 = new PrimeFactorList(99);
+		n2 = new PrimeFactorList(66);
+		assertEquals(33, PrimeFactorList.greatestCommonDivisor(new PrimeFactorList[] {n1, n2}).calculateValue());
 	}
 
 	@Test

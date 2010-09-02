@@ -117,8 +117,45 @@ public class PrimeFactorList extends TreeMap<Long, Long> {
 		return result;
 	}
 	
+	public static PrimeFactorList greatestCommonDivisor(PrimeFactorList[] others)
+	{
+		PrimeFactorList result = new PrimeFactorList(0L);
+
+		// cancel out all same powers
+		for (PrimeFactorList pfl: others)
+		{
+			if (pfl == null)
+				continue;
+
+			for(Entry<Long, Long> entry: pfl.entrySet())
+			{
+				if (entry == null)
+					continue;
+
+				long key = entry.getKey();
+				boolean contains = false;
+				long min = Long.MAX_VALUE;
+				
+				for (PrimeFactorList pfl2: others)
+				{
+					if (pfl == pfl2)
+						continue;
+					
+					if (!pfl2.containsKey(key))
+						continue;
+					contains = true;
+					min = Math.min(pfl.getPower(key), pfl2.getPower(key));
+				}
+				if (contains)
+					result.put(entry.getKey(), min);
+			}
+			return result;
+		}
+		return result;
+	}
+	
 	// take a bunch of indiviual lists and make them one
-	public static PrimeFactorList aggregateFactorLists(PrimeFactorList[] others)
+	public static PrimeFactorList lowestCommonMultiple(PrimeFactorList[] others)
 	{
 		PrimeFactorList result = new PrimeFactorList(0L);
 		
