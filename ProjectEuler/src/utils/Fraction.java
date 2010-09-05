@@ -102,4 +102,12 @@ public class Fraction {
 		BigInteger r = BigInteger.valueOf(diff.calculateValue());
 		return new Fraction(_numerator.divide(r), _denominator.divide(r));
 	}
+
+	public BigInteger numerator() {
+		return this._numerator;
+	}
+
+	public BigInteger denominator() {
+		return this._denominator;
+	}
 }
