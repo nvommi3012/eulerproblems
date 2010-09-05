@@ -2,6 +2,7 @@ package problem_18;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
@@ -14,14 +15,8 @@ public class Problem18 {
 	int[][] _triangle;
 	int _lines;
 	
-	/**
-	 * @param filename name of the data file (file must be in the same directory as the source files)
-	 * @throws Exception if there is a problem with the data file exception is thrown
-	 */
-	public Problem18(String filename) throws Exception
+	private void readFile(File f) throws IOException
 	{
-		// open the data file
-		File f = new File("src"+ File.separator +"problem_18", filename);
 		// get a linecount so we can allocate the array correctly
 		_lines = getLineCount(f);
 		// allocate the array
@@ -48,6 +43,22 @@ public class Problem18 {
 			data = r.readLine();
 		}
 		r.close();
+	}
+	
+	/**
+	 * @param filename name of the data file (file must be in the same directory as the source files)
+	 * @throws Exception if there is a problem with the data file exception is thrown
+	 */
+	public Problem18(String filename) throws IOException
+	{
+		// open the data file
+		File f = new File("src"+ File.separator +"problem_18", filename);
+		readFile(f);
+	}
+	
+	public Problem18(File f) throws IOException
+	{
+		readFile(f);
 	}
 	
 	/**
