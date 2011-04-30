@@ -47,7 +47,7 @@ public class PrimeFactorList extends TreeMap<Long, Long> {
 						// but also in which power, we will add one power for each factor we find
 						this.put(x, getPower(x) + 1);
 						i = i / x;
-						break;
+						x -= 2;
 					}
 				}
 			}
