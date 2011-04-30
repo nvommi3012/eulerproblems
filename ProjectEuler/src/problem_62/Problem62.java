@@ -4,7 +4,8 @@ import java.util.Map.Entry;
 import java.util.TreeMap;
 import utils.ArrayList;
 import utils.Digits;
-import utils.Primes;
+import utils.IPrimes;
+import utils.PrimesSieve;
 
 /**
  * @author wolfgang
@@ -24,7 +25,7 @@ public class Problem62 {
 		// one prime for each digit
 		_primes = new long[10];
 		// prime generator
-		Primes primes = new Primes();
+		IPrimes primes = new PrimesSieve();
 		// start looking for primes
 		long p = 1;
 		for (int i = 0; i < 10; ++i)
@@ -61,7 +62,7 @@ public class Problem62 {
 		TreeMap<Long, ArrayList<Long>> tm = new TreeMap<Long, ArrayList<Long>>();
 		
 		// hopefully the solution will be found in less than 10000 cubes
-		for (long n = 1L;n<10000; ++n)
+		for (long n = 1L; n < 10000; ++n)
 		{
 			// calculate the cube
 			long pow3 = (long)Math.pow(n, 3);

@@ -1,5 +1,6 @@
 package problem_37;
 
+import utils.IPrimes;
 import utils.Primes;
 
 /**
@@ -8,14 +9,20 @@ import utils.Primes;
  */
 public class Problem37 {
 
-	private Primes _gen;
+	private IPrimes _gen;
 	
 	/**
 	 * Constructor, init the PrimeGenerator and Checker (with better optimization)
 	 */
 	public Problem37()
 	{
+		try {
 		_gen = new Primes(1000000);
+		}
+		catch (Exception e)
+		{
+			_gen = new Primes();
+		}
 	}
 	
 	/**

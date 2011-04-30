@@ -3,7 +3,9 @@ package problem_35;
 import java.util.ArrayList;
 import java.util.Iterator;
 import utils.Digits;
-import utils.Primes;
+import utils.IPrimes;
+import utils.PrimesAtkins;
+import utils.PrimesSieve;
 
 /**
  * @author Wolfgang
@@ -12,7 +14,7 @@ import utils.Primes;
 public class Problem35 {
 
 	// prime number generator and checker
-	private Primes _gen;
+	private IPrimes _gen;
 	private final int MAX = 1000000;
 	
 	/**
@@ -20,7 +22,14 @@ public class Problem35 {
 	 */
 	public Problem35()
 	{
-		_gen = new Primes(MAX);
+		try
+		{
+		_gen = new PrimesAtkins(MAX);
+		}
+		catch (Exception e)
+		{
+			_gen = new PrimesSieve();
+		}
 	}
 	
 	/**

@@ -14,10 +14,17 @@ public class Problem69 {
 
 	/**
 	 * Ctor, init the factorial object 
+	 * @throws Exception 
 	 */
-	public Problem69()
+	public Problem69() throws Exception
 	{
-		_pfl = new PrimeFactorList(1,100000);
+		try {
+			_pfl = new PrimeFactorList(1,100000);
+		}
+		catch (Exception e)
+		{
+			throw new Exception("PFL not available");
+		}
 	}
 	
 	/**

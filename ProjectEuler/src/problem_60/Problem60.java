@@ -1,6 +1,7 @@
 package problem_60;
 
-import utils.Primes;
+import utils.IPrimes;
+import utils.PrimesSieve;
 
 /**
  * @author wolfgang
@@ -9,7 +10,7 @@ import utils.Primes;
 public class Problem60 {
 
 	// prime checker
-	Primes _primes;
+	IPrimes _primes;
 	// up to where to concatenate primes
 	final long MAX_PRIME = 10000;
 	
@@ -18,7 +19,7 @@ public class Problem60 {
 	 */
 	public Problem60()
 	{
-		_primes = new Primes(MAX_PRIME * 10);
+		_primes = new PrimesSieve(MAX_PRIME * 10);
 	}
 
 	/**
@@ -26,7 +27,7 @@ public class Problem60 {
 	 */
 	public Problem60(int start)
 	{
-		_primes = new Primes(start);
+		_primes = new PrimesSieve(start);
 	}
 	
 	/**

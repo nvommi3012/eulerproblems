@@ -3,8 +3,9 @@ package problem_49;
 import java.util.ArrayList;
 
 import utils.Digits;
+import utils.IPrimes;
 import utils.Permutation;
-import utils.Primes;
+import utils.PrimesSieve;
 
 /**
  * @author Wolfgang
@@ -19,7 +20,7 @@ public class Problem49 {
 		// array to check which permutations were already done
 		boolean done[] = new boolean[10000];
 		// pregenerated prime checker
-		Primes primes = new Primes(10000);
+		IPrimes primes = new PrimesSieve(10000);
 		// permutation object
 		Permutation permutation = new Permutation();
 		// result as string

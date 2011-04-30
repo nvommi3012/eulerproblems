@@ -108,12 +108,18 @@ public class PrimeFactorListTest {
 	@Test
 	public void testOpt()
 	{
+		try {
 		PrimeFactorList l = new PrimeFactorList(12345, 10000);
 		// 12345 = 3^1 5^1 823^1
 		assertEquals(3, l.size());
 		assertEquals(1, l.getPower(3));
 		assertEquals(1, l.getPower(5));
 		assertEquals(1, l.getPower(823));
+		}
+		catch (Exception e)
+		{
+			fail();
+		}
 	}
 	
 }

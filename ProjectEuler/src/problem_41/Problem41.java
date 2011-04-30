@@ -2,7 +2,9 @@ package problem_41;
 
 import java.util.NavigableSet;
 import java.util.TreeMap;
-import utils.Primes;
+
+import utils.IPrimes;
+import utils.PrimesSieve;
 
 /**
  * @author Wolfgang
@@ -48,7 +50,7 @@ public class Problem41 {
 	public long getSolution() {
 		try {
 			long prime;
-			Primes gen = new Primes();
+			IPrimes gen = new PrimesSieve();
 			// 7654321 is the upper limit we have to search, because
 			// 1+2+3+4+5+6+7+8=36 and 1+2+3+4+5+6+7+8+9=45 both of which are
 			// divisible by 3 with 0 remainder which indicates that

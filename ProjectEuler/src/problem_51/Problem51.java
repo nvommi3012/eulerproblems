@@ -2,8 +2,9 @@ package problem_51;
 
 import utils.ArrayList;
 import utils.Digits;
+import utils.IPrimes;
 import utils.Permutation;
-import utils.Primes;
+import utils.PrimesSieve;
 
 /**
  * @author wolfgang
@@ -65,7 +66,7 @@ public class Problem51 {
 	 * @param order how many generated primes are needed
 	 * @return the first prime >= <test> that generates <order> primes
 	 */
-	long applymask(long test, ArrayList<int[]> masks, Primes primes, int order)
+	long applymask(long test, ArrayList<int[]> masks, IPrimes primes, int order)
 	{
 		// test never changes so convert to array immediately
 		int[] testa = Digits.Number((int)test);
@@ -132,7 +133,7 @@ public class Problem51 {
 	 */
 	public long getSolution() throws Exception {
 		// pregenerate the primes
-		Primes primes = new Primes(200000);
+		IPrimes primes = new PrimesSieve(200000);
 		// mask object not yet created
 		ArrayList<int[]> mask = null;
 		

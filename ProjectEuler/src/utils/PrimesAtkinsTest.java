@@ -1,26 +1,19 @@
 package utils;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import org.junit.Test;
 
-
-public class PrimesTest {
-
+public class PrimesAtkinsTest {
+	
 	@Test
-	public void testPrimeSimple()
+	public void testPrime()
 	{
-		IPrimes p = new Primes();
 		try
 		{
-		assertEquals(2L, p.generatePrime(0L));
-		assertEquals(2L, p.generatePrime(1L));
-		assertEquals(3L, p.generatePrime(2L));
-		assertEquals(13L, p.generatePrime(11L));
-		assertEquals(193939L, p.generatePrime(193938L));
+			PrimesAtkins p = new PrimesAtkins(100);
 		}
 		catch (Exception e)
 		{
@@ -30,13 +23,14 @@ public class PrimesTest {
 	}
 	
 	@Test
-	public void testIsPrimeAtkins()
+	public void testIsPrime()
 	{
 		try {
-		IPrimes p = new Primes(5000000);
+		PrimesAtkins p = new PrimesAtkins(10000000);
 		assertFalse(p.isPrime(15));
 		assertFalse(p.isPrime(121));
 		assertTrue(p.isPrime(2));
+		assertTrue(p.isPrime(3));
 		assertFalse(p.isPrime(4));
 		assertTrue(p.isPrime(5));
 		assertTrue(p.isPrime(13));

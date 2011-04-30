@@ -15,7 +15,7 @@ public class Problem47 {
 	public int getSolution() throws Exception {
 		
 		// create a prime factor list with optimized primes
-		PrimeFactorList pfl = new PrimeFactorList(1, 10000);
+		PrimeFactorList pfl = new PrimeFactorList(1, 1000000);
 		
 		// since there is no number consisting of 4 distinct prime factors lower than 2*3*5*7 we can start there
 		for (int i = 2*3*5*7; i < Integer.MAX_VALUE; ++i)

@@ -9,7 +9,7 @@ import java.util.Map.Entry;
  */
 public class PrimeFactorList extends TreeMap<Long, Long> {
 	private static final long serialVersionUID = 1L;
-	private Primes _primes;
+	private IPrimes _primes;
 
 	/**
 	 * @param i number to be factorized
@@ -73,7 +73,7 @@ public class PrimeFactorList extends TreeMap<Long, Long> {
 	 * @param n number to factorize
 	 * @param opt seed for the prime class
 	 */
-	public PrimeFactorList(long n, long opt)
+	public PrimeFactorList(long n, long opt) throws Exception
 	{
 		super();
 		_primes = new Primes(opt);

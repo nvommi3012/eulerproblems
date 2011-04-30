@@ -1,5 +1,6 @@
 package problem_50;
 
+import utils.IPrimes;
 import utils.Primes;
 
 /**
@@ -17,7 +18,14 @@ public class Problem50 {
 	public long getSolution()
 	{
 		// generate all primes up to max
-		Primes p = new Primes(MAX);
+		IPrimes p;
+		try{
+			p = new Primes(MAX);
+		}
+		catch (Exception e)
+		{
+			p = new Primes();
+		}
 		int max =0;
 		int count = 0;
 		int add = 0;

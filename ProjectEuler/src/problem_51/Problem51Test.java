@@ -6,7 +6,8 @@ import static org.junit.Assert.fail;
 import org.junit.Test;
 
 import utils.ArrayList;
-import utils.Primes;
+import utils.IPrimes;
+import utils.PrimesSieve;
 
 public class Problem51Test {
 
@@ -53,7 +54,7 @@ public class Problem51Test {
 		public void testMaskApplication()
 		{
 			Problem51 p = new Problem51();
-			Primes primes = new Primes(1000000);
+			IPrimes primes = new PrimesSieve(1000000);
 			ArrayList<int[]> tmp = p.getMask(2);
 			assertEquals(13, p.applymask(13, tmp, primes, 6));
 			tmp = p.getMask(5);

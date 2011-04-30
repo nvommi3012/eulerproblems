@@ -1,5 +1,6 @@
 package problem_58;
 
+import utils.IPrimes;
 import utils.Primes;
 
 /**
@@ -8,7 +9,7 @@ import utils.Primes;
  */
 public class Problem58 {
 
-	private Primes _primes;
+	private IPrimes _primes;
 	
 	/**
 	 * Ctor, init the prime checker 

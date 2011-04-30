@@ -1,5 +1,6 @@
 package problem_27;
 
+import utils.IPrimes;
 import utils.Primes;
 
 /**
@@ -13,7 +14,7 @@ public class Problem27 {
 	/**
 	 * @note Primechecker object stores all primes for easy calculations 
 	 */
-	private Primes _pc;
+	private IPrimes _pc;
 
 	/**
 	 * Constructor 
