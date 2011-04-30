@@ -14,6 +14,7 @@ public class PrimesAtkinsTest {
 		try
 		{
 			PrimesAtkins p = new PrimesAtkins(100);
+			p.isPrime(0);
 		}
 		catch (Exception e)
 		{
