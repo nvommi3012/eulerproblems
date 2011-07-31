@@ -58,7 +58,6 @@ public class Problem22 {
 	{
 		// use bufferedreader to read line by line (even though in this example its only one line)
 		BufferedReader r = null;
-		int count = 1;
 		TreeMap<String, Score> map = new TreeMap<String, Score>();
 		r = new BufferedReader(new FileReader(f));
 		String data = r.readLine();
@@ -72,7 +71,6 @@ public class Problem22 {
 				if (s.isEmpty())
 					continue;
 				map.put(s, new Score(s));
-				++count;
 			}
 			data = r.readLine();
 		}
