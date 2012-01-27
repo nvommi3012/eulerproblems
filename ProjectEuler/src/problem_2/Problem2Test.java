@@ -18,7 +18,7 @@ public class Problem2Test extends TestCase {
 	{
 		Problem2 p = new Problem2();
 		int result = p.calculate(4000000);
-		assertTrue(result < 4000000);
+		assertEquals(4613732, result);
 	}
 	
 }
