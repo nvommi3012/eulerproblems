@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import utils.Digits;
 import utils.IPrimes;
 import utils.Permutation;
-import utils.PrimesSieve;
+import utils.PrimesFactory;
 
 /**
  * @author Wolfgang
@@ -20,7 +20,7 @@ public class Problem49 {
 		// array to check which permutations were already done
 		boolean done[] = new boolean[10000];
 		// pregenerated prime checker
-		IPrimes primes = new PrimesSieve(10000);
+		IPrimes primes = PrimesFactory.getSieve(10000);
 		// permutation object
 		Permutation permutation = new Permutation();
 		// result as string

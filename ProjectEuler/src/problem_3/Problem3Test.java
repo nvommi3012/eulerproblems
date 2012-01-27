@@ -8,6 +8,6 @@ public class Problem3Test extends TestCase {
 	{
 		Problem3 p = new Problem3();
 		long result = p.getLargestPrimeFactor(600851475143L);
-		assertTrue(result == 6857);
+		assertEquals(6857, result);
 	}
 }

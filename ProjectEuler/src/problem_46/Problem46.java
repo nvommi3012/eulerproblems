@@ -1,7 +1,7 @@
 package problem_46;
 
 import utils.IPrimes;
-import utils.PrimesSieve;
+import utils.PrimesFactory;
 
 /**
  * @author Wolfgang
@@ -17,7 +17,7 @@ public class Problem46 {
 		// Goldbach Conjecture formula: c = prime + 2 * n^2
 
 		// start with a small number of primes, the optimizer should add other primes when needed
-		IPrimes primes = new PrimesSieve(100);
+		IPrimes primes = PrimesFactory.getSieve(100);
 		// start with the number 35 -- see http://projecteuler.net/index.php?section=problems&id=46
 		long i = 35;
 		// start with the first prime though

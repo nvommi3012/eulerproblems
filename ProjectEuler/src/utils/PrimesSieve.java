@@ -6,7 +6,7 @@ import java.util.TreeSet;
  * @author wolfgang
  * @note checks and generates primes
  */
-public class PrimesSieve implements IPrimes {
+class PrimesSieve implements IPrimes {
 
 	// storage for ordered and optimized primes
 	private TreeSet<Long> _primes;

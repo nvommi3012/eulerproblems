@@ -1,7 +1,7 @@
 package problem_60;
 
 import utils.IPrimes;
-import utils.PrimesSieve;
+import utils.PrimesFactory;
 
 /**
  * @author wolfgang
@@ -19,7 +19,7 @@ public class Problem60 {
 	 */
 	public Problem60()
 	{
-		_primes = new PrimesSieve(MAX_PRIME * 10);
+		_primes = PrimesFactory.getSieve(MAX_PRIME * 10);
 	}
 
 	/**
@@ -27,7 +27,7 @@ public class Problem60 {
 	 */
 	public Problem60(int start)
 	{
-		_primes = new PrimesSieve(start);
+		_primes = PrimesFactory.getSieve(start);
 	}
 	
 	/**

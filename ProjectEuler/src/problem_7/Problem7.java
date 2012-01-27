@@ -1,7 +1,7 @@
 package problem_7;
 
 import utils.IPrimes;
-import utils.PrimesSieve;
+import utils.PrimesFactory;
 
 /**
  * @author Wolfgang
@@ -15,7 +15,7 @@ public class Problem7 {
 	 */
 	public long getPrime(int max) {
 		long result = 0;
-		IPrimes p = new PrimesSieve();
+		IPrimes p = PrimesFactory.getSieve();
 		// just count all the primes
 		for (int count = 0; count < max; ++count)
 			try { result = p.generatePrime(result); } catch (Exception e) {}
