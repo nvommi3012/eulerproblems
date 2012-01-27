@@ -26,9 +26,9 @@ public class Problem2 {
 			
 			// only take even values and add to a sum. stop before reaching max
 			fib = fibonacci(count);
-			if ((fib % 2) == 0 && (sum + fib < max))
+			if ((fib % 2) == 0 && (fib < max))
 				sum += fib;
-			else if (sum + fib >= max)
+			else if (fib >= max)
 				return sum;
 			
 			++count;
