@@ -1,18 +1,16 @@
 package utils;
 
-public class PrimesAtkins implements IPrimes {
+class PrimesAtkins implements IPrimes {
 	//private ArrayList<Long> _primes;
 	private int _limit;
 	private boolean _primes[];
-	private ArrayList<Long> _primesList;
 	
-	public PrimesAtkins(int limit) throws Exception
+	public PrimesAtkins(int limit)
 	{
 		_limit = 0;
 		if (limit > (Integer.MAX_VALUE - 1))
 			return;
 		_limit = limit;
-        _primesList = new ArrayList<Long>();
 		_primes = new boolean[_limit + 1];
 		FindPrimes();
 	}
@@ -40,17 +38,16 @@ public class PrimesAtkins implements IPrimes {
 	
 	private void FindPrimes()
 	{
-		//boolean[] isPrime = new boolean[_limit + 1];
-		int sqrt = (int)Math.sqrt(_limit);
+		int upperLimit = (int)Math.sqrt(_limit);
 		
 		_primes[2] = true;
 		_primes[3] = true;
 
-		for (int x = 1; x <= sqrt; x++)
+		for (int x = 1; x <= upperLimit; x++)
 		{
 			int xx = x*x;
 
-			for (int y = 1; y <= sqrt; y++)
+			for (int y = 1; y <= upperLimit; y++)
 			{
 				int yy = y*y;
 				
@@ -65,7 +62,7 @@ public class PrimesAtkins implements IPrimes {
 					_primes[n] ^= true;
 			}
 		}
-		for (int n = 5; n <= sqrt; n+=2)
+		for (int n = 5; n <= upperLimit; n+=2)
 		{
 			if (_primes[n])
 			{
@@ -73,12 +70,6 @@ public class PrimesAtkins implements IPrimes {
 				for (int k = s; k <= _limit; k += s)
 					_primes[k] = false;
 			}
-		}
-		
-		for (int n = 2; n <= _limit; ++n)
-		{
-			if (_primes[n])
-				_primesList.add((long)n);
 		}
 	}
 

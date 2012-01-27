@@ -4,7 +4,7 @@ import utils.ArrayList;
 import utils.Digits;
 import utils.IPrimes;
 import utils.Permutation;
-import utils.PrimesSieve;
+import utils.PrimesFactory;
 
 /**
  * @author wolfgang
@@ -133,7 +133,7 @@ public class Problem51 {
 	 */
 	public long getSolution() throws Exception {
 		// pregenerate the primes
-		IPrimes primes = new PrimesSieve(200000);
+		IPrimes primes = PrimesFactory.getSieve(200000);
 		// mask object not yet created
 		ArrayList<int[]> mask = null;
 		

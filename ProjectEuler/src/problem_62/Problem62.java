@@ -5,7 +5,7 @@ import java.util.TreeMap;
 import utils.ArrayList;
 import utils.Digits;
 import utils.IPrimes;
-import utils.PrimesSieve;
+import utils.PrimesFactory;
 
 /**
  * @author wolfgang
@@ -25,7 +25,7 @@ public class Problem62 {
 		// one prime for each digit
 		_primes = new long[10];
 		// prime generator
-		IPrimes primes = new PrimesSieve();
+		IPrimes primes = PrimesFactory.getSieve();
 		// start looking for primes
 		long p = 1;
 		for (int i = 0; i < 10; ++i)

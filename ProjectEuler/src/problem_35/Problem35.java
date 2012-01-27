@@ -4,8 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import utils.Digits;
 import utils.IPrimes;
-import utils.PrimesAtkins;
-import utils.PrimesSieve;
+import utils.PrimesFactory;
 
 /**
  * @author Wolfgang
@@ -22,14 +21,7 @@ public class Problem35 {
 	 */
 	public Problem35()
 	{
-		try
-		{
-		_gen = new PrimesAtkins(MAX);
-		}
-		catch (Exception e)
-		{
-			_gen = new PrimesSieve();
-		}
+		_gen = PrimesFactory.getAtkins(MAX);
 	}
 	
 	/**
